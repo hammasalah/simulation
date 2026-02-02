@@ -1,0 +1,192 @@
+<!-- 
+  Distillation Column SVG Diagram
+  Interactive tray and packed column comparison
+  Author: Chemical Engineering Lab Simulation Platform
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 550 450" class="distillation-diagram">
+  <defs>
+    <linearGradient id="columnGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#b8c6db"/>
+      <stop offset="50%" style="stop-color:#f5f7fa"/>
+      <stop offset="100%" style="stop-color:#b8c6db"/>
+    </linearGradient>
+    
+    <linearGradient id="vaporGradient" x1="0%" y1="100%" x2="0%" y2="0%">
+      <stop offset="0%" style="stop-color:#fd79a8"/>
+      <stop offset="100%" style="stop-color:#fdcb6e"/>
+    </linearGradient>
+    
+    <linearGradient id="liquidDownGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#74b9ff"/>
+      <stop offset="100%" style="stop-color:#0984e3"/>
+    </linearGradient>
+    
+    <pattern id="packingPattern" patternUnits="userSpaceOnUse" width="10" height="10">
+      <circle cx="5" cy="5" r="3" fill="none" stroke="#888" stroke-width="0.5"/>
+      <line x1="2" y1="2" x2="8" y2="8" stroke="#888" stroke-width="0.5"/>
+    </pattern>
+    
+    <marker id="distArrow" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="var(--primary, #008080)"/>
+    </marker>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="550" height="450" fill="var(--bg-secondary, #f5f5f5)" rx="10"/>
+  
+  <!-- Title -->
+  <text x="275" y="25" text-anchor="middle" class="diagram-title" fill="var(--text-primary, #333)" font-size="14" font-weight="bold">
+    Colonnes de Distillation - Plateau vs Garnissage
+  </text>
+  
+  <!-- TRAY COLUMN (Left) -->
+  <g class="tray-column" data-type="tray" transform="translate(50, 50)">
+    <text x="70" y="10" text-anchor="middle" font-size="12" fill="#333" font-weight="bold">Colonne à Plateaux</text>
+    
+    <!-- Column body -->
+    <rect x="20" y="30" width="100" height="300" fill="url(#columnGradient)" stroke="#666" stroke-width="3" rx="5"/>
+    
+    <!-- Trays -->
+    <g class="trays">
+      <g class="tray" data-tray="1">
+        <line x1="25" y1="70" x2="115" y2="70" stroke="#555" stroke-width="2"/>
+        <rect x="30" y="65" width="80" height="8" fill="#74b9ff" opacity="0.6"/>
+        <circle cx="35" cy="60" r="3" fill="#fd79a8"/>
+        <circle cx="50" cy="58" r="3" fill="#fd79a8"/>
+        <circle cx="65" cy="59" r="3" fill="#fd79a8"/>
+      </g>
+      <g class="tray" data-tray="2">
+        <line x1="25" y1="120" x2="115" y2="120" stroke="#555" stroke-width="2"/>
+        <rect x="30" y="115" width="80" height="8" fill="#74b9ff" opacity="0.6"/>
+        <circle cx="40" cy="110" r="3" fill="#fd79a8"/>
+        <circle cx="55" cy="108" r="3" fill="#fd79a8"/>
+        <circle cx="70" cy="111" r="3" fill="#fd79a8"/>
+        <circle cx="85" cy="109" r="3" fill="#fd79a8"/>
+      </g>
+      <g class="tray" data-tray="3">
+        <line x1="25" y1="170" x2="115" y2="170" stroke="#555" stroke-width="2"/>
+        <rect x="30" y="165" width="80" height="8" fill="#74b9ff" opacity="0.6"/>
+        <circle cx="45" cy="160" r="3" fill="#fd79a8"/>
+        <circle cx="60" cy="158" r="3" fill="#fd79a8"/>
+        <circle cx="75" cy="161" r="3" fill="#fd79a8"/>
+      </g>
+      <g class="tray" data-tray="4">
+        <line x1="25" y1="220" x2="115" y2="220" stroke="#555" stroke-width="2"/>
+        <rect x="30" y="215" width="80" height="8" fill="#74b9ff" opacity="0.6"/>
+      </g>
+      <g class="tray" data-tray="5">
+        <line x1="25" y1="270" x2="115" y2="270" stroke="#555" stroke-width="2"/>
+        <rect x="30" y="265" width="80" height="10" fill="#0984e3" opacity="0.7"/>
+      </g>
+    </g>
+    
+    <!-- Feed inlet -->
+    <g class="feed-inlet">
+      <line x1="-20" y1="195" x2="20" y2="195" stroke="#27ae60" stroke-width="4" marker-end="url(#distArrow)"/>
+      <text x="-35" y="200" text-anchor="middle" font-size="9" fill="#27ae60" transform="rotate(-90, -35, 200)">Alimentation</text>
+      <text x="-10" y="180" font-size="8" fill="#27ae60">F, zF</text>
+    </g>
+    
+    <!-- Condenser (top) -->
+    <g class="condenser-top">
+      <rect x="130" y="30" width="50" height="30" fill="#74b9ff" stroke="#0984e3" stroke-width="2" rx="5"/>
+      <text x="155" y="50" text-anchor="middle" font-size="8" fill="white">Condenseur</text>
+      <line x1="120" y1="45" x2="130" y2="45" stroke="#fd79a8" stroke-width="3"/>
+      
+      <!-- Distillate output -->
+      <line x1="180" y1="45" x2="200" y2="45" stroke="#fdcb6e" stroke-width="3" marker-end="url(#distArrow)"/>
+      <text x="200" y="35" font-size="8" fill="#e67e22">Distillat (D)</text>
+      
+      <!-- Reflux -->
+      <path d="M155,60 L155,75 L120,75 L120,55" fill="none" stroke="#74b9ff" stroke-width="2" marker-end="url(#distArrow)"/>
+      <text x="140" y="85" font-size="7" fill="#0984e3">Reflux (L)</text>
+    </g>
+    
+    <!-- Reboiler (bottom) -->
+    <g class="reboiler">
+      <ellipse cx="70" cy="350" rx="40" ry="20" fill="#e74c3c" stroke="#c0392b" stroke-width="2"/>
+      <text x="70" y="355" text-anchor="middle" font-size="8" fill="white">Rebouilleur</text>
+      
+      <!-- Bottom product -->
+      <line x1="70" y1="370" x2="70" y2="390" stroke="#0984e3" stroke-width="3" marker-end="url(#distArrow)"/>
+      <text x="85" y="385" font-size="8" fill="#0984e3">Résidu (B)</text>
+      
+      <!-- Vapor return -->
+      <path d="M40,340 L40,320 L25,320" fill="none" stroke="#fd79a8" stroke-width="2" marker-end="url(#distArrow)"/>
+    </g>
+    
+    <!-- McCabe-Thiele reference -->
+    <g class="mccabe-ref" transform="translate(0, 400)">
+      <text x="70" y="0" text-anchor="middle" font-size="8" fill="#666">Méthode McCabe-Thiele</text>
+      <text x="70" y="12" text-anchor="middle" font-size="8" fill="#666">N plateaux théoriques</text>
+    </g>
+  </g>
+  
+  <!-- PACKED COLUMN (Right) -->
+  <g class="packed-column" data-type="packed" transform="translate(300, 50)">
+    <text x="70" y="10" text-anchor="middle" font-size="12" fill="#333" font-weight="bold">Colonne à Garnissage</text>
+    
+    <!-- Column body -->
+    <rect x="20" y="30" width="100" height="300" fill="url(#columnGradient)" stroke="#666" stroke-width="3" rx="5"/>
+    
+    <!-- Packing sections -->
+    <g class="packing">
+      <rect x="25" y="50" width="90" height="100" fill="url(#packingPattern)"/>
+      <text x="70" y="100" text-anchor="middle" font-size="7" fill="#555">Section</text>
+      <text x="70" y="110" text-anchor="middle" font-size="7" fill="#555">rectification</text>
+      
+      <line x1="25" y1="160" x2="115" y2="160" stroke="#27ae60" stroke-width="3" stroke-dasharray="5,3"/>
+      
+      <rect x="25" y="170" width="90" height="130" fill="url(#packingPattern)"/>
+      <text x="70" y="235" text-anchor="middle" font-size="7" fill="#555">Section</text>
+      <text x="70" y="245" text-anchor="middle" font-size="7" fill="#555">épuisement</text>
+    </g>
+    
+    <!-- Liquid distributor -->
+    <g class="distributor">
+      <rect x="30" y="40" width="80" height="8" fill="#74b9ff" stroke="#0984e3" stroke-width="1"/>
+      <line x1="40" y1="48" x2="40" y2="55" stroke="#0984e3" stroke-width="1"/>
+      <line x1="60" y1="48" x2="60" y2="55" stroke="#0984e3" stroke-width="1"/>
+      <line x1="80" y1="48" x2="80" y2="55" stroke="#0984e3" stroke-width="1"/>
+      <line x1="100" y1="48" x2="100" y2="55" stroke="#0984e3" stroke-width="1"/>
+    </g>
+    
+    <!-- Feed inlet -->
+    <g class="feed-inlet">
+      <line x1="-20" y1="160" x2="20" y2="160" stroke="#27ae60" stroke-width="4" marker-end="url(#distArrow)"/>
+      <text x="-10" y="145" font-size="8" fill="#27ae60">F, zF</text>
+    </g>
+    
+    <!-- Condenser (top) -->
+    <g class="condenser-top">
+      <rect x="130" y="30" width="50" height="30" fill="#74b9ff" stroke="#0984e3" stroke-width="2" rx="5"/>
+      <text x="155" y="50" text-anchor="middle" font-size="8" fill="white">Condenseur</text>
+      <line x1="120" y1="45" x2="130" y2="45" stroke="#fd79a8" stroke-width="3"/>
+      
+      <!-- Distillate output -->
+      <line x1="180" y1="45" x2="200" y2="45" stroke="#fdcb6e" stroke-width="3" marker-end="url(#distArrow)"/>
+      <text x="200" y="35" font-size="8" fill="#e67e22">Distillat</text>
+    </g>
+    
+    <!-- Reboiler (bottom) -->
+    <g class="reboiler">
+      <ellipse cx="70" cy="350" rx="40" ry="20" fill="#e74c3c" stroke="#c0392b" stroke-width="2"/>
+      <text x="70" y="355" text-anchor="middle" font-size="8" fill="white">Rebouilleur</text>
+      
+      <line x1="70" y1="370" x2="70" y2="390" stroke="#0984e3" stroke-width="3" marker-end="url(#distArrow)"/>
+      <text x="85" y="385" font-size="8" fill="#0984e3">Résidu</text>
+    </g>
+    
+    <!-- HETP reference -->
+    <g class="hetp-ref" transform="translate(0, 400)">
+      <text x="70" y="0" text-anchor="middle" font-size="8" fill="#666">HETP = Hauteur Équivalente</text>
+      <text x="70" y="12" text-anchor="middle" font-size="8" fill="#666">à un Plateau Théorique</text>
+    </g>
+  </g>
+  
+  <!-- Comparison arrows -->
+  <g class="comparison" transform="translate(230, 200)">
+    <text x="0" y="0" text-anchor="middle" font-size="10" fill="var(--primary, #008080)" font-weight="bold">⟷</text>
+    <text x="0" y="15" text-anchor="middle" font-size="8" fill="#666">Comparer</text>
+  </g>
+</svg>

@@ -1,0 +1,170 @@
+<!-- 
+  Chemical Reactors SVG Diagram
+  Interactive reactor types comparison schematic
+  Author: Chemical Engineering Lab Simulation Platform
+  
+  This SVG shows the four main reactor types: Batch, CSTR, PFR, and PBR
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400" class="reactors-diagram">
+  <defs>
+    <linearGradient id="reactorGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#a8e6cf"/>
+      <stop offset="100%" style="stop-color:#88d8b0"/>
+    </linearGradient>
+    
+    <linearGradient id="liquidGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#ffeaa7"/>
+      <stop offset="100%" style="stop-color:#fdcb6e"/>
+    </linearGradient>
+    
+    <pattern id="catalystPattern" patternUnits="userSpaceOnUse" width="8" height="8">
+      <circle cx="4" cy="4" r="2" fill="#6c5ce7"/>
+    </pattern>
+    
+    <marker id="reactorArrow" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="var(--primary, #008080)"/>
+    </marker>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="600" height="400" fill="var(--bg-secondary, #f5f5f5)" rx="10"/>
+  
+  <!-- Title -->
+  <text x="300" y="25" text-anchor="middle" class="diagram-title" fill="var(--text-primary, #333)" font-size="14" font-weight="bold">
+    Types de Réacteurs Chimiques
+  </text>
+  
+  <!-- Batch Reactor -->
+  <g class="batch-reactor" data-type="batch" transform="translate(50, 60)">
+    <rect x="0" y="0" width="100" height="130" fill="url(#reactorGradient)" stroke="#27ae60" stroke-width="3" rx="10"/>
+    <rect x="10" y="20" width="80" height="90" fill="url(#liquidGradient)" rx="5"/>
+    
+    <!-- Agitator -->
+    <line x1="50" y1="0" x2="50" y2="40" stroke="#555" stroke-width="4"/>
+    <g class="agitator-blades">
+      <line x1="30" y1="50" x2="70" y2="50" stroke="#555" stroke-width="3"/>
+      <line x1="35" y1="70" x2="65" y2="70" stroke="#555" stroke-width="3"/>
+    </g>
+    <circle cx="50" cy="-10" r="10" fill="#555"/>
+    
+    <text x="50" y="150" text-anchor="middle" font-size="12" fill="#333" font-weight="bold">Batch</text>
+    <text x="50" y="165" text-anchor="middle" font-size="9" fill="#666">(Réacteur fermé)</text>
+    
+    <!-- Characteristics -->
+    <g class="characteristics" transform="translate(0, 180)">
+      <text x="50" y="0" text-anchor="middle" font-size="8" fill="#555">• Pas d'entrée/sortie</text>
+      <text x="50" y="12" text-anchor="middle" font-size="8" fill="#555">• Composition uniforme</text>
+      <text x="50" y="24" text-anchor="middle" font-size="8" fill="#555">• Temps = variable</text>
+    </g>
+  </g>
+  
+  <!-- CSTR (Continuous Stirred Tank Reactor) -->
+  <g class="cstr-reactor" data-type="cstr" transform="translate(175, 60)">
+    <rect x="0" y="0" width="100" height="130" fill="url(#reactorGradient)" stroke="#27ae60" stroke-width="3" rx="10"/>
+    <rect x="10" y="20" width="80" height="90" fill="url(#liquidGradient)" rx="5"/>
+    
+    <!-- Agitator -->
+    <line x1="50" y1="0" x2="50" y2="40" stroke="#555" stroke-width="4"/>
+    <g class="agitator-blades">
+      <line x1="30" y1="50" x2="70" y2="50" stroke="#555" stroke-width="3"/>
+      <line x1="35" y1="70" x2="65" y2="70" stroke="#555" stroke-width="3"/>
+    </g>
+    <circle cx="50" cy="-10" r="10" fill="#555"/>
+    
+    <!-- Inlet -->
+    <line x1="-30" y1="40" x2="0" y2="40" stroke="var(--primary, #008080)" stroke-width="4" marker-end="url(#reactorArrow)"/>
+    <text x="-15" y="30" text-anchor="middle" font-size="8" fill="var(--primary, #008080)">Entrée</text>
+    
+    <!-- Outlet -->
+    <line x1="100" y1="100" x2="130" y2="100" stroke="#e74c3c" stroke-width="4" marker-end="url(#reactorArrow)"/>
+    <text x="115" y="90" text-anchor="middle" font-size="8" fill="#e74c3c">Sortie</text>
+    
+    <text x="50" y="150" text-anchor="middle" font-size="12" fill="#333" font-weight="bold">CSTR</text>
+    <text x="50" y="165" text-anchor="middle" font-size="9" fill="#666">(Réacteur agité continu)</text>
+    
+    <!-- Characteristics -->
+    <g class="characteristics" transform="translate(0, 180)">
+      <text x="50" y="0" text-anchor="middle" font-size="8" fill="#555">• Flux continu</text>
+      <text x="50" y="12" text-anchor="middle" font-size="8" fill="#555">• Mélange parfait</text>
+      <text x="50" y="24" text-anchor="middle" font-size="8" fill="#555">• Csortie = Créacteur</text>
+    </g>
+  </g>
+  
+  <!-- PFR (Plug Flow Reactor) -->
+  <g class="pfr-reactor" data-type="pfr" transform="translate(320, 60)">
+    <rect x="0" y="30" width="120" height="50" fill="url(#reactorGradient)" stroke="#27ae60" stroke-width="3" rx="25"/>
+    
+    <!-- Concentration gradient -->
+    <defs>
+      <linearGradient id="concGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+        <stop offset="0%" style="stop-color:#fdcb6e"/>
+        <stop offset="100%" style="stop-color:#a8e6cf"/>
+      </linearGradient>
+    </defs>
+    <rect x="10" y="40" width="100" height="30" fill="url(#concGradient)" rx="15"/>
+    
+    <!-- Inlet -->
+    <line x1="-30" y1="55" x2="0" y2="55" stroke="var(--primary, #008080)" stroke-width="4" marker-end="url(#reactorArrow)"/>
+    <text x="-15" y="45" text-anchor="middle" font-size="8" fill="var(--primary, #008080)">Entrée</text>
+    
+    <!-- Outlet -->
+    <line x1="120" y1="55" x2="150" y2="55" stroke="#e74c3c" stroke-width="4" marker-end="url(#reactorArrow)"/>
+    <text x="135" y="45" text-anchor="middle" font-size="8" fill="#e74c3c">Sortie</text>
+    
+    <!-- Flow arrows inside -->
+    <g class="internal-flow">
+      <line x1="25" y1="55" x2="40" y2="55" stroke="#555" stroke-width="1" marker-end="url(#reactorArrow)"/>
+      <line x1="55" y1="55" x2="70" y2="55" stroke="#555" stroke-width="1" marker-end="url(#reactorArrow)"/>
+      <line x1="85" y1="55" x2="100" y2="55" stroke="#555" stroke-width="1" marker-end="url(#reactorArrow)"/>
+    </g>
+    
+    <text x="60" y="110" text-anchor="middle" font-size="12" fill="#333" font-weight="bold">PFR</text>
+    <text x="60" y="125" text-anchor="middle" font-size="9" fill="#666">(Réacteur piston)</text>
+    
+    <!-- Characteristics -->
+    <g class="characteristics" transform="translate(0, 140)">
+      <text x="60" y="0" text-anchor="middle" font-size="8" fill="#555">• Écoulement piston</text>
+      <text x="60" y="12" text-anchor="middle" font-size="8" fill="#555">• C = f(position)</text>
+      <text x="60" y="24" text-anchor="middle" font-size="8" fill="#555">• Pas de mélange axial</text>
+    </g>
+  </g>
+  
+  <!-- PBR (Packed Bed Reactor) -->
+  <g class="pbr-reactor" data-type="pbr" transform="translate(470, 60)">
+    <rect x="0" y="30" width="100" height="60" fill="url(#reactorGradient)" stroke="#27ae60" stroke-width="3" rx="10"/>
+    
+    <!-- Catalyst packing -->
+    <rect x="10" y="40" width="80" height="40" fill="url(#catalystPattern)"/>
+    
+    <!-- Inlet -->
+    <line x1="-30" y1="60" x2="0" y2="60" stroke="var(--primary, #008080)" stroke-width="4" marker-end="url(#reactorArrow)"/>
+    <text x="-15" y="50" text-anchor="middle" font-size="8" fill="var(--primary, #008080)">Entrée</text>
+    
+    <!-- Outlet -->
+    <line x1="100" y1="60" x2="130" y2="60" stroke="#e74c3c" stroke-width="4" marker-end="url(#reactorArrow)"/>
+    <text x="115" y="50" text-anchor="middle" font-size="8" fill="#e74c3c">Sortie</text>
+    
+    <text x="50" y="115" text-anchor="middle" font-size="12" fill="#333" font-weight="bold">PBR</text>
+    <text x="50" y="130" text-anchor="middle" font-size="9" fill="#666">(Lit fixe catalytique)</text>
+    
+    <!-- Characteristics -->
+    <g class="characteristics" transform="translate(0, 145)">
+      <text x="50" y="0" text-anchor="middle" font-size="8" fill="#555">• Catalyseur solide</text>
+      <text x="50" y="12" text-anchor="middle" font-size="8" fill="#555">• Réactions hétérogènes</text>
+      <text x="50" y="24" text-anchor="middle" font-size="8" fill="#555">• Perte de charge</text>
+    </g>
+  </g>
+  
+  <!-- Comparison table header -->
+  <g class="comparison-header" transform="translate(50, 310)">
+    <rect x="0" y="0" width="500" height="25" fill="var(--primary, #008080)" rx="5"/>
+    <text x="250" y="17" text-anchor="middle" font-size="11" fill="white" font-weight="bold">
+      Sélectionnez un réacteur pour voir la comparaison détaillée
+    </text>
+  </g>
+  
+  <!-- Active reactor indicator -->
+  <g class="active-indicator" visibility="hidden">
+    <rect x="0" y="0" width="110" height="140" fill="none" stroke="#e74c3c" stroke-width="4" stroke-dasharray="5,5" rx="12"/>
+  </g>
+</svg>

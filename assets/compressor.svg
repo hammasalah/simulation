@@ -1,0 +1,119 @@
+<!-- 
+  Compressor SVG Diagram
+  Interactive centrifugal/piston compressor schematic
+  Author: Chemical Engineering Lab Simulation Platform
+  
+  This SVG provides a visual representation of a single-stage compressor
+  with inlet, outlet, and key components labeled in French.
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" class="compressor-diagram">
+  <defs>
+    <!-- Gradient for metallic effect -->
+    <linearGradient id="metalGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#a0a0a0"/>
+      <stop offset="50%" style="stop-color:#e0e0e0"/>
+      <stop offset="100%" style="stop-color:#808080"/>
+    </linearGradient>
+    
+    <!-- Flow arrow marker -->
+    <marker id="flowArrow" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="var(--primary, #008080)"/>
+    </marker>
+    
+    <!-- Pressure gradient -->
+    <linearGradient id="pressureGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#4a90d9"/>
+      <stop offset="100%" style="stop-color:#d94a4a"/>
+    </linearGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="400" height="300" fill="var(--bg-secondary, #f5f5f5)" rx="10"/>
+  
+  <!-- Title -->
+  <text x="200" y="25" text-anchor="middle" class="diagram-title" fill="var(--text-primary, #333)" font-size="14" font-weight="bold">
+    Schéma du Compresseur
+  </text>
+  
+  <!-- Inlet pipe -->
+  <g class="inlet-section" data-tooltip="Entrée du gaz">
+    <rect x="20" y="130" width="80" height="40" fill="url(#metalGradient)" stroke="#666" stroke-width="2" rx="3"/>
+    <text x="60" y="155" text-anchor="middle" font-size="10" fill="#333">Entrée</text>
+    
+    <!-- Inlet flow arrow -->
+    <line x1="5" y1="150" x2="30" y2="150" stroke="var(--primary, #008080)" stroke-width="3" marker-end="url(#flowArrow)"/>
+    
+    <!-- Inlet parameters box -->
+    <g class="param-box inlet-params">
+      <rect x="15" y="180" width="90" height="50" fill="white" stroke="var(--primary, #008080)" stroke-width="1" rx="5" opacity="0.9"/>
+      <text x="60" y="195" text-anchor="middle" font-size="9" fill="#666">P₁ = <tspan class="inlet-pressure">101.3</tspan> kPa</text>
+      <text x="60" y="210" text-anchor="middle" font-size="9" fill="#666">T₁ = <tspan class="inlet-temp">298</tspan> K</text>
+      <text x="60" y="225" text-anchor="middle" font-size="9" fill="#666">ṁ = <tspan class="mass-flow">1.0</tspan> kg/s</text>
+    </g>
+  </g>
+  
+  <!-- Compressor body -->
+  <g class="compressor-body" data-tooltip="Corps du compresseur">
+    <!-- Main housing -->
+    <ellipse cx="200" cy="150" rx="70" ry="60" fill="url(#metalGradient)" stroke="#555" stroke-width="3"/>
+    
+    <!-- Impeller/rotor representation -->
+    <g class="impeller" transform="translate(200,150)">
+      <circle r="35" fill="none" stroke="#444" stroke-width="2" stroke-dasharray="10,5"/>
+      <path d="M0,-30 Q15,-15 0,0 Q-15,15 0,30" fill="none" stroke="#444" stroke-width="2"/>
+      <path d="M-30,0 Q-15,-15 0,0 Q15,15 30,0" fill="none" stroke="#444" stroke-width="2"/>
+      
+      <!-- Rotation indicator -->
+      <circle r="8" fill="var(--primary, #008080)" class="rotation-center"/>
+      <path d="M-20,-20 A28,28 0 0 1 20,-20" fill="none" stroke="var(--primary, #008080)" stroke-width="2" marker-end="url(#flowArrow)" class="rotation-arrow"/>
+    </g>
+    
+    <!-- Compressor label -->
+    <text x="200" y="230" text-anchor="middle" font-size="11" fill="#333" font-weight="bold">Compresseur</text>
+    <text x="200" y="245" text-anchor="middle" font-size="9" fill="#666" class="compressor-type">Centrifuge</text>
+  </g>
+  
+  <!-- Outlet pipe -->
+  <g class="outlet-section" data-tooltip="Sortie du gaz comprimé">
+    <rect x="300" y="130" width="80" height="40" fill="url(#metalGradient)" stroke="#666" stroke-width="2" rx="3"/>
+    <text x="340" y="155" text-anchor="middle" font-size="10" fill="#333">Sortie</text>
+    
+    <!-- Outlet flow arrow -->
+    <line x1="365" y1="150" x2="395" y2="150" stroke="#d94a4a" stroke-width="3" marker-end="url(#flowArrow)"/>
+    
+    <!-- Outlet parameters box -->
+    <g class="param-box outlet-params">
+      <rect x="295" y="180" width="90" height="50" fill="white" stroke="#d94a4a" stroke-width="1" rx="5" opacity="0.9"/>
+      <text x="340" y="195" text-anchor="middle" font-size="9" fill="#666">P₂ = <tspan class="outlet-pressure">303.9</tspan> kPa</text>
+      <text x="340" y="210" text-anchor="middle" font-size="9" fill="#666">T₂ = <tspan class="outlet-temp">405</tspan> K</text>
+      <text x="340" y="225" text-anchor="middle" font-size="9" fill="#666">W = <tspan class="power">107.5</tspan> kW</text>
+    </g>
+  </g>
+  
+  <!-- Connecting pipes -->
+  <line x1="100" y1="150" x2="130" y2="150" stroke="url(#metalGradient)" stroke-width="12"/>
+  <line x1="270" y1="150" x2="300" y2="150" stroke="url(#metalGradient)" stroke-width="12"/>
+  
+  <!-- Efficiency indicator -->
+  <g class="efficiency-display" transform="translate(200, 270)">
+    <rect x="-50" y="-12" width="100" height="24" fill="var(--primary, #008080)" rx="12" opacity="0.9"/>
+    <text x="0" y="5" text-anchor="middle" font-size="11" fill="white" font-weight="bold">
+      η = <tspan class="efficiency-value">85</tspan>%
+    </text>
+  </g>
+  
+  <!-- Work input arrow -->
+  <g class="work-input" transform="translate(200, 75)">
+    <line x1="0" y1="0" x2="0" y2="30" stroke="#e67e22" stroke-width="3" marker-end="url(#flowArrow)"/>
+    <text x="0" y="-8" text-anchor="middle" font-size="10" fill="#e67e22" font-weight="bold">Ẇ (Travail)</text>
+  </g>
+  
+  <!-- Legend -->
+  <g class="legend" transform="translate(20, 260)">
+    <rect width="120" height="35" fill="white" stroke="#ddd" rx="5" opacity="0.8"/>
+    <circle cx="15" cy="12" r="5" fill="#4a90d9"/>
+    <text x="25" y="16" font-size="8" fill="#666">Basse pression</text>
+    <circle cx="15" cy="27" r="5" fill="#d94a4a"/>
+    <text x="25" y="31" font-size="8" fill="#666">Haute pression</text>
+  </g>
+</svg>
