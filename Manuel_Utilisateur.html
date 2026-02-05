@@ -1,0 +1,909 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manuel d'Utilisateur - Plateforme de Simulation de Génie Chimique</title>
+    <style>
+        @page {
+            size: A4;
+            margin: 2cm;
+        }
+        
+        * {
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 210mm;
+            margin: 0 auto;
+            padding: 20px;
+            background: white;
+        }
+        
+        h1 {
+            color: #008080;
+            border-bottom: 3px solid #008080;
+            padding-bottom: 15px;
+            text-align: center;
+            font-size: 2.2em;
+        }
+        
+        h2 {
+            color: #006666;
+            border-bottom: 2px solid #e0e0e0;
+            padding-bottom: 10px;
+            margin-top: 40px;
+            page-break-after: avoid;
+        }
+        
+        h3 {
+            color: #008080;
+            margin-top: 25px;
+            page-break-after: avoid;
+        }
+        
+        h4 {
+            color: #444;
+            margin-top: 20px;
+        }
+        
+        .cover-page {
+            text-align: center;
+            padding: 60px 20px;
+            min-height: 90vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            page-break-after: always;
+        }
+        
+        .cover-page h1 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            border: none;
+        }
+        
+        .cover-page .subtitle {
+            font-size: 1.4em;
+            color: #666;
+            margin-bottom: 40px;
+        }
+        
+        .cover-page .logo {
+            font-size: 80px;
+            margin: 30px 0;
+        }
+        
+        .cover-page .version {
+            margin-top: 60px;
+            color: #888;
+        }
+        
+        .toc {
+            page-break-after: always;
+        }
+        
+        .toc h2 {
+            text-align: center;
+        }
+        
+        .toc ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .toc li {
+            padding: 8px 0;
+            border-bottom: 1px dotted #ccc;
+        }
+        
+        .toc a {
+            color: #008080;
+            text-decoration: none;
+        }
+        
+        .toc .section-num {
+            font-weight: bold;
+            margin-right: 10px;
+        }
+        
+        .info-box {
+            background: #e8f5f5;
+            border-left: 4px solid #008080;
+            padding: 15px 20px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .warning-box {
+            background: #fff3e0;
+            border-left: 4px solid #ff9800;
+            padding: 15px 20px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .tip-box {
+            background: #e8f5e9;
+            border-left: 4px solid #4caf50;
+            padding: 15px 20px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .step {
+            display: flex;
+            align-items: flex-start;
+            margin: 15px 0;
+        }
+        
+        .step-number {
+            background: #008080;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-right: 15px;
+            flex-shrink: 0;
+        }
+        
+        .step-content {
+            flex: 1;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+        
+        th {
+            background: #008080;
+            color: white;
+        }
+        
+        tr:nth-child(even) {
+            background: #f9f9f9;
+        }
+        
+        .screenshot {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 10px;
+            margin: 15px 0;
+            background: #f5f5f5;
+            text-align: center;
+        }
+        
+        .screenshot-placeholder {
+            background: linear-gradient(135deg, #e0e0e0 25%, #f5f5f5 25%, #f5f5f5 50%, #e0e0e0 50%, #e0e0e0 75%, #f5f5f5 75%);
+            background-size: 20px 20px;
+            padding: 40px;
+            color: #666;
+            font-style: italic;
+        }
+        
+        .formula {
+            background: #f8f9fa;
+            border: 1px solid #e0e0e0;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+            font-family: 'Cambria Math', 'Times New Roman', serif;
+            font-size: 1.1em;
+            text-align: center;
+        }
+        
+        .icon {
+            display: inline-block;
+            width: 24px;
+            height: 24px;
+            background: #008080;
+            border-radius: 4px;
+            margin-right: 5px;
+            vertical-align: middle;
+        }
+        
+        ul, ol {
+            margin: 10px 0;
+            padding-left: 25px;
+        }
+        
+        li {
+            margin: 8px 0;
+        }
+        
+        code {
+            background: #f4f4f4;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: 'Consolas', monospace;
+        }
+        
+        .page-break {
+            page-break-before: always;
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 50px;
+            padding-top: 20px;
+            border-top: 1px solid #ddd;
+            color: #888;
+            font-size: 0.9em;
+        }
+        
+        @media print {
+            body {
+                padding: 0;
+            }
+            
+            .no-print {
+                display: none;
+            }
+        }
+        
+        .btn-print {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: #008080;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+        
+        .btn-print:hover {
+            background: #006666;
+        }
+    </style>
+</head>
+<body>
+    <button class="btn-print no-print" onclick="window.print()">📄 Enregistrer en PDF</button>
+
+    <!-- PAGE DE COUVERTURE -->
+    <div class="cover-page">
+        <div class="logo">🧪</div>
+        <h1>Manuel d'Utilisateur</h1>
+        <div class="subtitle">Plateforme de Simulation<br>Laboratoire de Génie Chimique Industriel</div>
+        <p style="color: #666; margin-top: 30px;">
+            Guide complet pour l'utilisation de la plateforme<br>
+            de simulation des procédés chimiques
+        </p>
+        <div class="version">
+            <p>Version 1.0.0</p>
+            <p>© 2025 Laboratoire de Génie Chimique</p>
+        </div>
+    </div>
+
+    <!-- TABLE DES MATIÈRES -->
+    <div class="toc">
+        <h2>📋 Table des Matières</h2>
+        <ul>
+            <li><span class="section-num">1.</span> <a href="#intro">Introduction</a></li>
+            <li><span class="section-num">2.</span> <a href="#demarrage">Démarrage Rapide</a></li>
+            <li><span class="section-num">3.</span> <a href="#interface">Interface Utilisateur</a></li>
+            <li><span class="section-num">4.</span> <a href="#modules">Les Modules de Simulation</a>
+                <ul>
+                    <li>4.1 Simulation d'un Compresseur</li>
+                    <li>4.2 Centrale Thermique (Cycle de Hirn)</li>
+                    <li>4.3 Cycle Combiné (Brayton + Rankine)</li>
+                    <li>4.4 Types de Réacteurs Chimiques</li>
+                    <li>4.5 Colonnes de Distillation</li>
+                    <li>4.6 Production d'Ester (Saponification)</li>
+                    <li>4.7 Production de Chlorobenzène</li>
+                </ul>
+            </li>
+            <li><span class="section-num">5.</span> <a href="#outils">Outils et Fonctionnalités</a></li>
+            <li><span class="section-num">6.</span> <a href="#export">Export et Rapports</a></li>
+            <li><span class="section-num">7.</span> <a href="#faq">Questions Fréquentes</a></li>
+        </ul>
+    </div>
+
+    <!-- SECTION 1: INTRODUCTION -->
+    <h2 id="intro">1. Introduction</h2>
+    
+    <p>Bienvenue dans la <strong>Plateforme de Simulation de Génie Chimique Industriel</strong>. Cette application web interactive est conçue pour aider les étudiants et les enseignants à comprendre et simuler différents procédés de génie chimique.</p>
+    
+    <div class="info-box">
+        <strong>🎯 Objectif de la plateforme :</strong><br>
+        Fournir un outil éducatif interactif permettant de visualiser et comprendre les concepts fondamentaux du génie chimique à travers des simulations réalistes.
+    </div>
+
+    <h3>1.1 Caractéristiques Principales</h3>
+    <ul>
+        <li><strong>7 modules de simulation</strong> couvrant la thermodynamique, les réacteurs et les procédés de séparation</li>
+        <li><strong>Calculs en temps réel</strong> avec explications détaillées étape par étape</li>
+        <li><strong>Graphiques interactifs</strong> pour visualiser les résultats</li>
+        <li><strong>Équations mathématiques</strong> affichées en format LaTeX</li>
+        <li><strong>Interface bilingue</strong> (Français / Anglais)</li>
+        <li><strong>Thème clair/sombre</strong> selon vos préférences</li>
+        <li><strong>Export des données</strong> en CSV et rapports HTML</li>
+    </ul>
+
+    <h3>1.2 Prérequis</h3>
+    <ul>
+        <li>Un navigateur web moderne (Chrome, Firefox, Safari, Edge)</li>
+        <li>Aucune installation requise - fonctionne entièrement dans le navigateur</li>
+        <li>Connexion internet pour le premier chargement (bibliothèques externes)</li>
+    </ul>
+
+    <!-- SECTION 2: DÉMARRAGE RAPIDE -->
+    <h2 id="demarrage" class="page-break">2. Démarrage Rapide</h2>
+    
+    <p>Suivez ces étapes simples pour commencer à utiliser la plateforme :</p>
+
+    <div class="step">
+        <div class="step-number">1</div>
+        <div class="step-content">
+            <strong>Ouvrir la plateforme</strong><br>
+            Double-cliquez sur le fichier <code>index.html</code> ou ouvrez-le dans votre navigateur web préféré.
+        </div>
+    </div>
+
+    <div class="step">
+        <div class="step-number">2</div>
+        <div class="step-content">
+            <strong>Choisir un module</strong><br>
+            Dans le menu latéral gauche, cliquez sur l'un des 7 modules de simulation disponibles.
+        </div>
+    </div>
+
+    <div class="step">
+        <div class="step-number">3</div>
+        <div class="step-content">
+            <strong>Configurer les paramètres</strong><br>
+            Entrez les valeurs souhaitées dans les champs de formulaire. Chaque paramètre a une valeur par défaut.
+        </div>
+    </div>
+
+    <div class="step">
+        <div class="step-number">4</div>
+        <div class="step-content">
+            <strong>Lancer la simulation</strong><br>
+            Cliquez sur le bouton <strong>"Lancer la simulation"</strong> pour exécuter les calculs.
+        </div>
+    </div>
+
+    <div class="step">
+        <div class="step-number">5</div>
+        <div class="step-content">
+            <strong>Analyser les résultats</strong><br>
+            Observez les résultats numériques, les graphiques et lisez les explications dans le panneau de droite.
+        </div>
+    </div>
+
+    <div class="tip-box">
+        <strong>💡 Astuce :</strong> Utilisez le bouton "Exemple" pour charger des valeurs prédéfinies et voir un cas typique de simulation.
+    </div>
+
+    <!-- SECTION 3: INTERFACE UTILISATEUR -->
+    <h2 id="interface" class="page-break">3. Interface Utilisateur</h2>
+
+    <h3>3.1 Vue d'Ensemble</h3>
+    <p>L'interface se compose de quatre zones principales :</p>
+
+    <table>
+        <tr>
+            <th>Zone</th>
+            <th>Description</th>
+            <th>Fonction</th>
+        </tr>
+        <tr>
+            <td><strong>En-tête</strong></td>
+            <td>Barre supérieure</td>
+            <td>Logo, sélection de langue, basculer thème clair/sombre</td>
+        </tr>
+        <tr>
+            <td><strong>Menu latéral gauche</strong></td>
+            <td>Navigation</td>
+            <td>Liste des 7 modules de simulation et outils</td>
+        </tr>
+        <tr>
+            <td><strong>Zone centrale</strong></td>
+            <td>Contenu principal</td>
+            <td>Formulaire de paramètres, résultats et graphiques</td>
+        </tr>
+        <tr>
+            <td><strong>Panneau droit</strong></td>
+            <td>Explications</td>
+            <td>Théorie, formules et notes explicatives</td>
+        </tr>
+    </table>
+
+    <h3>3.2 Barre d'En-tête</h3>
+    
+    <h4>🌐 Sélection de la Langue</h4>
+    <p>Utilisez le menu déroulant pour basculer entre :</p>
+    <ul>
+        <li>🇫🇷 <strong>Français</strong> (par défaut)</li>
+        <li>🇬🇧 <strong>English</strong></li>
+    </ul>
+
+    <h4>🌙 Thème Clair/Sombre</h4>
+    <p>Cliquez sur l'interrupteur à côté de la sélection de langue pour basculer entre le mode clair et le mode sombre. Votre préférence est sauvegardée automatiquement.</p>
+
+    <h3>3.3 Menu de Navigation</h3>
+    <p>Le menu latéral gauche affiche tous les modules disponibles. Cliquez sur un module pour le charger. Le module actif est mis en surbrillance.</p>
+    
+    <div class="info-box">
+        <strong>📱 Sur mobile :</strong> Cliquez sur le bouton ☰ (menu hamburger) en haut à gauche pour ouvrir/fermer le menu de navigation.
+    </div>
+
+    <h3>3.4 Panneau d'Explications</h3>
+    <p>Le panneau de droite contient :</p>
+    <ul>
+        <li><strong>À propos :</strong> Description du module actuel</li>
+        <li><strong>Théorie :</strong> Concepts physiques et chimiques</li>
+        <li><strong>Formules :</strong> Équations mathématiques utilisées (affichées en LaTeX)</li>
+        <li><strong>Calculs détaillés :</strong> Étapes de résolution (après simulation)</li>
+    </ul>
+    
+    <p>Vous pouvez fermer ce panneau en cliquant sur le bouton ✕ pour avoir plus d'espace de travail.</p>
+
+    <!-- SECTION 4: LES MODULES -->
+    <h2 id="modules" class="page-break">4. Les Modules de Simulation</h2>
+
+    <!-- MODULE 4.1: COMPRESSEUR -->
+    <h3>4.1 Simulation d'un Compresseur</h3>
+    
+    <p>Ce module simule un compresseur centrifuge ou à piston, calculant les conditions de sortie et la puissance requise.</p>
+
+    <h4>📥 Paramètres d'Entrée</h4>
+    <table>
+        <tr>
+            <th>Paramètre</th>
+            <th>Description</th>
+            <th>Unité</th>
+            <th>Valeur par défaut</th>
+        </tr>
+        <tr>
+            <td>Température d'entrée</td>
+            <td>Température du gaz à l'entrée</td>
+            <td>K ou °C</td>
+            <td>298.15 K (25°C)</td>
+        </tr>
+        <tr>
+            <td>Pression d'entrée</td>
+            <td>Pression du gaz à l'entrée</td>
+            <td>Pa ou bar</td>
+            <td>101325 Pa (1 atm)</td>
+        </tr>
+        <tr>
+            <td>Taux de compression</td>
+            <td>Rapport P₂/P₁</td>
+            <td>-</td>
+            <td>3.0</td>
+        </tr>
+        <tr>
+            <td>Débit massique</td>
+            <td>Quantité de gaz par seconde</td>
+            <td>kg/s</td>
+            <td>1.0</td>
+        </tr>
+        <tr>
+            <td>Rendement isentropique</td>
+            <td>Efficacité du compresseur</td>
+            <td>%</td>
+            <td>85%</td>
+        </tr>
+        <tr>
+            <td>Type de gaz</td>
+            <td>Air, N₂, O₂, CO₂, CH₄, H₂, He, Vapeur</td>
+            <td>-</td>
+            <td>Air</td>
+        </tr>
+    </table>
+
+    <h4>📤 Résultats</h4>
+    <ul>
+        <li>Température de sortie isentropique (T₂s) et réelle (T₂)</li>
+        <li>Pression de sortie</li>
+        <li>Puissance requise (isentropique et réelle)</li>
+        <li>Variation d'entropie</li>
+        <li>Diagrammes T-s et P-v</li>
+    </ul>
+
+    <h4>📐 Formules Principales</h4>
+    <div class="formula">
+        <strong>Température isentropique :</strong><br>
+        T₂s = T₁ × (P₂/P₁)^((γ-1)/γ)
+    </div>
+    <div class="formula">
+        <strong>Rendement isentropique :</strong><br>
+        ηs = (T₂s - T₁) / (T₂ - T₁)
+    </div>
+    <div class="formula">
+        <strong>Puissance :</strong><br>
+        Ẇ = ṁ × Cp × (T₂ - T₁)
+    </div>
+
+    <!-- MODULE 4.2: RANKINE -->
+    <h3 class="page-break">4.2 Centrale Thermique (Cycle de Hirn/Rankine)</h3>
+    
+    <p>Simulation d'une centrale électrique à vapeur fonctionnant selon le cycle de Rankine (basique) ou Hirn (avec surchauffe).</p>
+
+    <h4>📥 Paramètres d'Entrée</h4>
+    <table>
+        <tr>
+            <th>Paramètre</th>
+            <th>Description</th>
+            <th>Valeur par défaut</th>
+        </tr>
+        <tr>
+            <td>Pression chaudière</td>
+            <td>Pression de la vapeur haute pression</td>
+            <td>8000 kPa (8 MPa)</td>
+        </tr>
+        <tr>
+            <td>Pression condenseur</td>
+            <td>Pression de condensation</td>
+            <td>10 kPa</td>
+        </tr>
+        <tr>
+            <td>Température de surchauffe</td>
+            <td>Température après surchauffeur</td>
+            <td>500°C</td>
+        </tr>
+        <tr>
+            <td>Débit de vapeur</td>
+            <td>Débit massique de vapeur</td>
+            <td>100 kg/s</td>
+        </tr>
+        <tr>
+            <td>Rendement pompe</td>
+            <td>Efficacité de la pompe</td>
+            <td>85%</td>
+        </tr>
+        <tr>
+            <td>Rendement turbine</td>
+            <td>Efficacité de la turbine</td>
+            <td>87%</td>
+        </tr>
+    </table>
+
+    <h4>📤 Résultats</h4>
+    <ul>
+        <li>Travail de la turbine et de la pompe</li>
+        <li>Chaleur entrée et sortie</li>
+        <li>Rendement thermique du cycle</li>
+        <li>Diagramme T-s du cycle</li>
+    </ul>
+
+    <!-- MODULE 4.3: CYCLE COMBINÉ -->
+    <h3 class="page-break">4.3 Cycle Combiné (Brayton + Rankine)</h3>
+    
+    <p>Simulation d'une centrale à cycle combiné avec turbine à gaz (cycle Brayton) et cycle vapeur (Rankine).</p>
+
+    <div class="info-box">
+        <strong>💡 Principe :</strong> Le cycle combiné exploite les gaz d'échappement chauds de la turbine à gaz pour produire de la vapeur dans un HRSG (Heat Recovery Steam Generator), atteignant des rendements supérieurs à 55%.
+    </div>
+
+    <h4>📥 Paramètres d'Entrée</h4>
+    <ul>
+        <li><strong>Cycle Brayton :</strong> Température entrée air, taux de compression, température entrée turbine</li>
+        <li><strong>Cycle Rankine :</strong> Pression vapeur HP, pression condenseur</li>
+        <li><strong>HRSG :</strong> Point de pincement, température d'approche</li>
+    </ul>
+
+    <h4>📤 Résultats</h4>
+    <ul>
+        <li>Puissance turbine gaz et vapeur</li>
+        <li>Rendement global du cycle combiné</li>
+        <li>Diagramme T-Q du HRSG</li>
+        <li>Répartition de la puissance</li>
+    </ul>
+
+    <!-- MODULE 4.4: RÉACTEURS -->
+    <h3 class="page-break">4.4 Types de Réacteurs Chimiques</h3>
+    
+    <p>Ce module permet de comparer et simuler les quatre types fondamentaux de réacteurs chimiques.</p>
+
+    <h4>Types de Réacteurs</h4>
+    <table>
+        <tr>
+            <th>Type</th>
+            <th>Nom</th>
+            <th>Caractéristique</th>
+        </tr>
+        <tr>
+            <td><strong>Batch</strong></td>
+            <td>Réacteur discontinu</td>
+            <td>Conversion dépendante du temps, pas d'écoulement</td>
+        </tr>
+        <tr>
+            <td><strong>CSTR</strong></td>
+            <td>Réacteur continu parfaitement agité</td>
+            <td>Mélange parfait, concentration uniforme</td>
+        </tr>
+        <tr>
+            <td><strong>PFR</strong></td>
+            <td>Réacteur piston (écoulement idéal)</td>
+            <td>Gradient de concentration axial, pas de mélange</td>
+        </tr>
+        <tr>
+            <td><strong>PBR</strong></td>
+            <td>Réacteur à lit fixe</td>
+            <td>Avec catalyseur solide, perte de charge</td>
+        </tr>
+    </table>
+
+    <h4>📥 Paramètres d'Entrée</h4>
+    <ul>
+        <li>Type de réacteur</li>
+        <li>Schéma réactionnel (A→B, A→B→C, 2A→B)</li>
+        <li>Constantes de vitesse (k₁, k₂)</li>
+        <li>Concentration initiale (CA₀)</li>
+        <li>Volume du réacteur ou masse de catalyseur</li>
+        <li>Options non-isothermes (bilan énergétique)</li>
+    </ul>
+
+    <h4>📤 Résultats</h4>
+    <ul>
+        <li>Profils de concentration</li>
+        <li>Taux de conversion</li>
+        <li>Sélectivité (réactions multiples)</li>
+        <li>Profil de température (non-isotherme)</li>
+    </ul>
+
+    <!-- MODULE 4.5: DISTILLATION -->
+    <h3 class="page-break">4.5 Colonnes de Distillation</h3>
+    
+    <p>Conception et simulation de colonnes de distillation binaire avec la méthode de McCabe-Thiele.</p>
+
+    <h4>📥 Paramètres d'Entrée</h4>
+    <table>
+        <tr>
+            <th>Paramètre</th>
+            <th>Description</th>
+            <th>Valeur par défaut</th>
+        </tr>
+        <tr>
+            <td>Composition alimentation (xF)</td>
+            <td>Fraction molaire du léger dans l'alimentation</td>
+            <td>0.50</td>
+        </tr>
+        <tr>
+            <td>Composition distillat (xD)</td>
+            <td>Fraction molaire souhaitée en tête</td>
+            <td>0.95</td>
+        </tr>
+        <tr>
+            <td>Composition résidu (xB)</td>
+            <td>Fraction molaire souhaitée en fond</td>
+            <td>0.05</td>
+        </tr>
+        <tr>
+            <td>Condition alimentation (q)</td>
+            <td>Liquide saturé (q=1), vapeur saturée (q=0)</td>
+            <td>1.0</td>
+        </tr>
+        <tr>
+            <td>Volatilité relative (α)</td>
+            <td>Rapport des pressions de vapeur</td>
+            <td>2.5</td>
+        </tr>
+        <tr>
+            <td>Taux de reflux (R)</td>
+            <td>L/D (reflux/distillat)</td>
+            <td>2.0</td>
+        </tr>
+    </table>
+
+    <h4>📤 Résultats</h4>
+    <ul>
+        <li>Nombre d'étages théoriques</li>
+        <li>Position de l'alimentation optimale</li>
+        <li>Reflux minimum (Rmin)</li>
+        <li>Diagramme McCabe-Thiele (x-y)</li>
+        <li>Débits liquide et vapeur</li>
+    </ul>
+
+    <div class="tip-box">
+        <strong>💡 Astuce :</strong> La méthode graphique de McCabe-Thiele permet de visualiser les étages d'équilibre entre les droites opératoires et la courbe d'équilibre.
+    </div>
+
+    <!-- MODULE 4.6: ESTER -->
+    <h3 class="page-break">4.6 Production d'Ester (Saponification)</h3>
+    
+    <p>Simulation de la réaction classique de saponification de l'acétate d'éthyle.</p>
+
+    <div class="formula">
+        <strong>Réaction :</strong><br>
+        CH₃COOC₂H₅ + NaOH → CH₃COONa + C₂H₅OH<br>
+        (Acétate d'éthyle + Soude → Acétate de sodium + Éthanol)
+    </div>
+
+    <h4>📥 Paramètres d'Entrée</h4>
+    <ul>
+        <li>Concentration initiale (mol/L)</li>
+        <li>Température (°C)</li>
+        <li>Durée de réaction (min)</li>
+        <li>Constante de vitesse à 25°C</li>
+        <li>Énergie d'activation (kJ/mol)</li>
+    </ul>
+
+    <h4>📤 Résultats</h4>
+    <ul>
+        <li>Évolution de la conversion en fonction du temps</li>
+        <li>Courbe de conductivité (suivi expérimental)</li>
+        <li>Graphique linéarisé pour détermination de k</li>
+        <li>Comparaison avec solution analytique</li>
+    </ul>
+
+    <div class="info-box">
+        <strong>📊 Cinétique :</strong> Cette réaction est du second ordre, premier ordre en chaque réactif : -rA = k × CA × CB
+    </div>
+
+    <!-- MODULE 4.7: CHLOROBENZÈNE -->
+    <h3 class="page-break">4.7 Production de Chlorobenzène</h3>
+    
+    <p>Simulation de la synthèse industrielle du chlorobenzène par chloration aromatique.</p>
+
+    <div class="formula">
+        <strong>Réactions :</strong><br>
+        C₆H₆ + Cl₂ → C₆H₅Cl + HCl (Monochlorobenzène)<br>
+        C₆H₅Cl + Cl₂ → C₆H₄Cl₂ + HCl (Dichlorobenzène)
+    </div>
+
+    <h4>📥 Paramètres d'Entrée</h4>
+    <ul>
+        <li>Débit de benzène (mol/min)</li>
+        <li>Débit de chlore (mol/min)</li>
+        <li>Température (°C)</li>
+        <li>Volume total des réacteurs (L)</li>
+        <li>Nombre de réacteurs en série (1-5 CSTRs)</li>
+    </ul>
+
+    <h4>📤 Résultats</h4>
+    <ul>
+        <li>Conversion du benzène</li>
+        <li>Sélectivité en monochlorobenzène</li>
+        <li>Distribution des produits</li>
+        <li>Bilan thermique</li>
+    </ul>
+
+    <div class="warning-box">
+        <strong>⚠️ Sécurité :</strong> Cette réaction est exothermique et utilise du chlore gazeux. Un contrôle de température approprié est essentiel.
+    </div>
+
+    <!-- SECTION 5: OUTILS -->
+    <h2 id="outils" class="page-break">5. Outils et Fonctionnalités</h2>
+
+    <h3>5.1 Générateur d'Exercices</h3>
+    <p>Cet outil permet de créer des exercices personnalisés pour les étudiants.</p>
+    
+    <h4>Comment l'utiliser :</h4>
+    <ol>
+        <li>Cliquez sur <strong>"Générateur d'Exercices"</strong> dans le menu Outils</li>
+        <li>Sélectionnez le module concerné</li>
+        <li>Définissez l'objectif de l'exercice</li>
+        <li>Ajoutez des contraintes si nécessaire</li>
+        <li>Choisissez le niveau de difficulté (Facile, Moyen, Difficile)</li>
+        <li>Cliquez sur <strong>"Exporter JSON"</strong> pour sauvegarder</li>
+    </ol>
+
+    <h3>5.2 Afficher les Calculs</h3>
+    <p>Après chaque simulation, vous pouvez voir le détail des calculs :</p>
+    <ul>
+        <li>Cliquez sur le bouton <strong>"Afficher les calculs"</strong></li>
+        <li>Les étapes de calcul s'affichent dans le panneau d'explications</li>
+        <li>Chaque étape montre la formule utilisée et le résultat</li>
+    </ul>
+
+    <h3>5.3 Réinitialiser</h3>
+    <p>Le bouton <strong>"Réinitialiser"</strong> remet tous les paramètres aux valeurs par défaut du module.</p>
+
+    <h3>5.4 Charger un Exemple</h3>
+    <p>Le bouton <strong>"Exemple"</strong> charge un cas d'étude prédéfini avec des valeurs réalistes.</p>
+
+    <!-- SECTION 6: EXPORT -->
+    <h2 id="export" class="page-break">6. Export et Rapports</h2>
+
+    <h3>6.1 Exporter les Données</h3>
+    <p>Pour exporter vos résultats de simulation :</p>
+
+    <div class="step">
+        <div class="step-number">1</div>
+        <div class="step-content">
+            Cliquez sur <strong>"Exporter le Rapport"</strong> dans le menu Outils
+        </div>
+    </div>
+
+    <div class="step">
+        <div class="step-number">2</div>
+        <div class="step-content">
+            Choisissez le format :
+            <ul>
+                <li><strong>CSV</strong> - Données numériques pour tableur (Excel, Calc)</li>
+                <li><strong>HTML</strong> - Rapport complet imprimable</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="step">
+        <div class="step-number">3</div>
+        <div class="step-content">
+            Sélectionnez les options :
+            <ul>
+                <li>☑️ Inclure les graphiques</li>
+                <li>☑️ Inclure les calculs détaillés</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="step">
+        <div class="step-number">4</div>
+        <div class="step-content">
+            Cliquez sur <strong>"Télécharger"</strong>
+        </div>
+    </div>
+
+    <h3>6.2 Imprimer un Rapport</h3>
+    <p>Pour le format HTML :</p>
+    <ol>
+        <li>Ouvrez le fichier HTML téléchargé dans votre navigateur</li>
+        <li>Utilisez <code>Ctrl+P</code> (ou <code>Cmd+P</code> sur Mac)</li>
+        <li>Sélectionnez "Enregistrer en PDF" ou votre imprimante</li>
+    </ol>
+
+    <!-- SECTION 7: FAQ -->
+    <h2 id="faq" class="page-break">7. Questions Fréquentes (FAQ)</h2>
+
+    <h3>❓ La simulation ne se lance pas</h3>
+    <p><strong>Solution :</strong> Vérifiez que tous les champs obligatoires sont remplis avec des valeurs valides (nombres positifs). Rechargez la page si nécessaire.</p>
+
+    <h3>❓ Les graphiques ne s'affichent pas</h3>
+    <p><strong>Solution :</strong> Assurez-vous d'avoir une connexion internet pour charger la bibliothèque Chart.js. Si le problème persiste, essayez un autre navigateur.</p>
+
+    <h3>❓ Comment changer la langue ?</h3>
+    <p><strong>Solution :</strong> Utilisez le menu déroulant en haut à droite de l'écran pour basculer entre Français et English.</p>
+
+    <h3>❓ Mes préférences ne sont pas sauvegardées</h3>
+    <p><strong>Solution :</strong> La plateforme utilise le localStorage du navigateur. Assurez-vous que les cookies et le stockage local ne sont pas bloqués.</p>
+
+    <h3>❓ Les équations mathématiques ne s'affichent pas correctement</h3>
+    <p><strong>Solution :</strong> Les équations utilisent MathJax. Attendez quelques secondes pour le chargement complet, ou rechargez la page.</p>
+
+    <h3>❓ Comment obtenir de l'aide sur un module spécifique ?</h3>
+    <p><strong>Solution :</strong> Chaque module dispose d'un panneau d'explications à droite contenant la théorie, les formules et des conseils d'utilisation.</p>
+
+    <!-- FOOTER -->
+    <div class="footer page-break">
+        <h2>📞 Support et Contact</h2>
+        <p>Pour toute question ou suggestion concernant cette plateforme :</p>
+        <ul style="list-style: none; padding: 0;">
+            <li>📧 Contactez votre enseignant ou responsable de TP</li>
+            <li>📖 Consultez la documentation README.md incluse</li>
+        </ul>
+        
+        <hr style="margin: 30px 0;">
+        
+        <p><strong>Plateforme de Simulation - Laboratoire de Génie Chimique</strong></p>
+        <p>Version 1.0.0 | © 2025</p>
+        <p style="font-size: 0.8em; color: #aaa;">
+            Développé pour un usage éducatif.<br>
+            Les résultats doivent être validés pour des applications industrielles réelles.
+        </p>
+    </div>
+
+</body>
+</html>
