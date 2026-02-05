@@ -61,6 +61,7 @@ const i18n = {
         'nav.chlorobenzene': 'Production de chlorobenzène',
         'nav.generator': 'Générateur d\'exercices',
         'nav.export': 'Exporter le rapport',
+        'nav.manual': 'Manuel d\'Utilisateur',
         
         // Common
         'common.run': 'Lancer la simulation',
@@ -114,6 +115,7 @@ const i18n = {
         'nav.chlorobenzene': 'Chlorobenzene production',
         'nav.generator': 'Assignment generator',
         'nav.export': 'Export report',
+        'nav.manual': 'User Manual',
         
         'common.run': 'Run simulation',
         'common.reset': 'Reset',
